@@ -17,8 +17,7 @@ class College extends Model
         'collegeid', 'collegename', 'collegesname','collegedescription'
     ];    
 
-
-    public function collegePrograms(){
-    	return $this->hasMany('App\Program','pcollegeid','collegeid');
+    public function programs(){
+    	return $this->hasMany('App\Program','pcollegeid','collegeid')->orderBy('programname');
     }
 }

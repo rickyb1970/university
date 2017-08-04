@@ -16,11 +16,11 @@ class SimpleController extends Controller
     public function showProgram($id){
          $object = new Program;
 
-         $program = $object->find($id);
+         $program = $object->findOrFail($id);
   
          echo 'Program ID: ',$program->programid,'<br>';
          echo 'Program Name: ',$program->programname,'<br>';
-         echo 'College Name: ',$program->programCollege->collegename,'<br>';	          
+         echo 'College Name: ',$program->collegeName->collegename,'<br>';	          
     }
 
     public function showPrograms(){
@@ -28,11 +28,13 @@ class SimpleController extends Controller
 
     	$programs = $object->get();
 
+        echo 'Programs:<br><br>';
     	foreach($programs as $program){
-    		echo $program->programid,' ';
-    		echo $program->programname,' ';
-    		echo $program->programsname,' ';
-    		echo $program->programCollege->collegename,'<br>';
+    		echo 'Program ID: ',$program->programid,'<br> ';
+    		echo 'Program Full Name: ',$program->programname,'<br> ';
+    		echo 'Program Short Name: ',$program->programsname,'<br> ';
+    		echo 'College: ',$program->collegeName->collegename,'<br><br>';
+            echo '<hr>';
     	}
     }
 
@@ -70,15 +72,12 @@ class SimpleController extends Controller
         $college = new College;
 
         $selectedCollege = $college->find($collid);
-
         echo "College ID: ",$selectedCollege->collegeid,'<br>';
         echo "College Name: ",$selectedCollege->collegename,'<br>';
-        echo "College Programs:<br>";
-        $programs = $selectedCollege->collegePrograms;
+        echo "College Programs:<br><br> ";
          
-        foreach($programs as $program){ 
-            echo "Program Code: ",$program->programid,'<br>';
-            echo "Program Name: ",$program->programname,'<br>';  
+        foreach($selectedCollege->programs as $program){ 
+            echo "Program: ",$program->programid,' ',$program->programname,'<br>';  
         } 
     }
 }

@@ -22,9 +22,12 @@ class Program extends Model
     	return $this->hasMany('App\Student','sprogramid','program');
     }
 
-    public function programCollege(){
-    	 return $this->belongsTo('App\College','pcollegeid','collegeid');
+    public function collegeName(){
+    	 return $this->hasOne('App\College','collegeid','pcollegeid');
 
-        //return belongsTo(College::class);
+    }
+
+    public function college(){
+        return $this->belongsTo('App\College');
     }
 }
