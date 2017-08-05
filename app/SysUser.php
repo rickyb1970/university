@@ -17,7 +17,7 @@ class SysUser extends Model
            'userid','username','userpassword','uroleid' 
     ];
 
-    public function sysUserRole(){
-    	return $this->belongsTo('SysRole','roleid','uroleid');
+    public function roles(){
+        return $this->belongsToMany('App\SysRole');
     }
 }

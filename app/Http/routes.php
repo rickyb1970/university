@@ -11,12 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('main.main');
-});
+// Route::get('/', function () {
+//     return view('main.main');
+// });
 
 Route::get('program/{id}','SimpleController@showProgram');
 Route::get('programs','SimpleController@showPrograms');
 Route::get('college/{id}','SimpleController@showCollegeInfo');
 Route::get('students','SimpleController@showStudents');
-Route::get('students/{id}','SimpleController@showStudent');
+Route::get('student/{id}','SimpleController@showStudent');

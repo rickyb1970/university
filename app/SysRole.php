@@ -16,7 +16,7 @@ class SysRole extends Model
           'roleid','roletype','roledescription'
     ];
 
-    public function roleAssigned(){
-    	return $this->hasMany('SysUser','uroleid','roleid');
-    }
+    public function sysUsers(){
+    	return $this->belongsToMany('App\SysUser','user_role','uroleid','roleid');
+    }    
 }
